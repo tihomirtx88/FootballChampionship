@@ -23,6 +23,7 @@ function App() {
           <Route index element={<Navigate replace to="homepage" />} />
           <Route path="homepage" element={<Homepage />} />
           <Route path="match/:id" element={<MatchDetailsPage />} />
+          <Route path="team/:id" element={<TeamDetailsPage/>}/>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
