@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import MatchDetailsPage from "./pages/MatchDetailsPage";
+import TeamDetailsPage from "./pages/TeamDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
