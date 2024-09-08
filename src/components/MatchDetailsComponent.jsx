@@ -95,10 +95,10 @@ export default function MatchDetailsComponent() {
 
   // Define dynamic player positions mapping (example)
   const positionMapping = {
-    GK: { baseRow: 6, baseCol: 3 },
-    DF: { baseRow: 4, baseCol: 1 },
-    MF: { baseRow: 4, baseCol: 3 }, 
-    FW: { baseRow: 3, baseCol: 3 },
+    GK: { baseRow: 4, baseCol: 3 },
+    DF: { baseRow: 3, baseCol: 1 },
+    MF: { baseRow: 2, baseCol: 3 }, 
+    FW: { baseRow: 1, baseCol: 3 },
   };
 
   // Function to render players dynamically based on their position
@@ -108,7 +108,7 @@ export default function MatchDetailsComponent() {
 
       // Dynamic positioning within the same position type
       const { baseRow, baseCol } = positionMapping[position] || { baseRow: 0, baseCol: 0 };
-      const rowOffset = Math.floor(index / 4); 
+      const rowOffset = 1; 
       const colOffset = index % 3;
 
       const row = baseRow - rowOffset;
