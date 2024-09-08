@@ -94,84 +94,155 @@ export default function MatchDetailsComponent() {
   };
 
   // Define dynamic player positions mapping (example)
-  const positionMapping = {
-    GK: { row: 4, col: 3 },
-    DF: { row: 3, col: 1 },
-    MF: { row: 2, col: 1 },
-    FW: { row: 1, col: 1 },
-  };
+  // const positionMapping = {
+  //   GK: { row: 4, col: 3 },
+  //   DF: { row: 3, col: 1 },
+  //   MF: { row: 2, col: 1 },
+  //   FW: { row: 1, col: 1 },
+  // };
 
   // Function to render players dynamically based on their position
   const renderPlayers = (players) => {
-
-    // let def = 0;
-    // let mid = 0;
-    // let strik = 0;
-
+    let GkArr = [];
     let defArr = [];
     let midArr = [];
     let strArr = [];
     const gridItems = [];
 
-
-    return players.forEach(()=>{
+    players.forEach((player) => {
       const position = player.Position;
-      
-      if(position === "DF") {
+
+      if (position === "DF") {
         // def += 1;
         defArr.push(player);
-      }else if(position === "MF"){
+      } else if (position === "MF") {
         // mid += 1;
         midArr.push(player);
-      }else if(position === "FW"){
+      } else if (position === "FW") {
         // strik += 1;
         strArr.push(player);
-      };
+      } else if (position === "GK") {
+        GkArr.push(player);
+      }
     });
+
+    const GkArrLength = GkArr.length;
+    const defLength = defArr.length;
+    const midLength = midArr.length;
+    const strLength = strArr.length;
+
+
+    GkArr.forEach((player, index) => {
+      const totalColumns = 7;
+
+      const middleColumn = Math.floor(totalColumns / 2); 
+
     
+      const colOffset =
+        GkArr.length > 1
+          ? middleColumn - Math.floor(GkArr.length / 2) + index
+          : middleColumn;
 
-
-  
-      // // Get base row and column from the position mapping
-      // const { row, col } = positionMapping[position] || { row: 0, col: 0 };
-
-
-      // const colOffset = position === "DF"
-      //    ? def
-      //    : position === "MF"
-      //      ? mid
-      //      : position === "FW"
-      //        ? strik
-      //        :  0;
-
-      // const gridRow = row;
-      // const gridCol = col + colOffset;
-      const defLength = defArr.length;
-      if (defLength === 1) {
-        gridItems.push( <PositionedPlayer
+      gridItems.push(
+        <PositionedPlayer
+          key={index} 
           className="postion-player"
-          key={index}
-          row={3}
-          col={3}
-          positionType={position}
+          row={4}
+          col={colOffset}
+          positionType={player.Position}
         >
           <div className="player-circle" />
           {player.FullName}
-          <span>({position})</span>
-        </PositionedPlayer>);
-      }else if(defLength === 2){
-          gridItems[1]
-      }
-      defArr.forEach((player) => {
-         
-      });
-      
-  
-
-      return (
-         gridItems
+          <span>({player.Position})</span>
+        </PositionedPlayer>
       );
     });
+
+    if (defLength === 5) {
+      defArr.forEach((player, index)=> {
+        const totalColumns = 7;
+
+          const middleColumn = Math.floor(totalColumns / 2); 
+    
+       
+          const colOffset =
+            defArr.length > 1
+              ? middleColumn - Math.floor(defArr.length / 2) + index
+              : middleColumn;
+    
+          gridItems.push(
+            <PositionedPlayer
+              className="postion-player"
+              row={3}
+              key={index} 
+              col={colOffset}
+              positionType={player.Position}
+            >
+              <div className="player-circle" />
+              {player.FullName}
+              <span>({player.Position})</span>
+            </PositionedPlayer>
+          );
+      });
+    }
+
+    if (defLength === 4) {
+      defArr.forEach((player, index)=> {
+        const totalColumns = 10;
+
+          const middleColumn = Math.floor(totalColumns / 2); 
+    
+       
+          const colOffset =
+            defArr.length > 1
+              ? middleColumn - Math.floor(defArr.length / 2) + index
+              : middleColumn;
+    
+          gridItems.push(
+            <PositionedPlayer
+              className="postion-player"
+              row={3}
+              key={index} 
+              col={colOffset}
+              positionType={player.Position}
+            >
+              <div className="player-circle" />
+              {player.FullName}
+              <span>({player.Position})</span>
+            </PositionedPlayer>
+          );
+      });
+    }
+
+
+    // defArr.forEach((player, index) => {
+    //   const totalColumns = 7;
+
+    //   const middleColumn = Math.floor(totalColumns / 2); // This is the center
+
+    //   // If there are multiple GKs, position them evenly around the center
+    //   const colOffset =
+    //     GkArr.length > 1
+    //       ? middleColumn - Math.floor(defArr.length / 2) + index
+    //       : middleColumn;
+
+    //   gridItems.push(
+    //     <PositionedPlayer
+    //       className="postion-player"
+    //       row={3}
+    //       col={colOffset}
+    //       positionType={player.Position}
+    //     >
+    //       <div className="player-circle" />
+    //       {player.FullName}
+    //       <span>({player.Position})</span>
+    //     </PositionedPlayer>
+    //   );
+    // });
+
+
+
+    return gridItems;
   };
 
   // Render reserve players (those after the 11th player)
@@ -197,7 +268,7 @@ export default function MatchDetailsComponent() {
         <TeamWrapper>
           <TeamName>{teamA.Name} Formation:</TeamName>
           <FootballFieldContainer className="foobal-field-container">
-            {renderPlayers(playersA.slice(0, 11), positionMapping)}
+            {renderPlayers(playersA.slice(0, 11))}
           </FootballFieldContainer>
           <ReservesContainer>
             <ReserveTitle>Reserves:</ReserveTitle>
@@ -208,7 +279,7 @@ export default function MatchDetailsComponent() {
         <TeamWrapper>
           <TeamName>{teamB.Name} Formation:</TeamName>
           <FootballFieldContainer>
-            {renderPlayers(playersB.slice(0, 11), positionMapping)}
+            {renderPlayers(playersB.slice(0, 11))}
           </FootballFieldContainer>
           <ReservesContainer>
             <ReserveTitle>Reserves:</ReserveTitle>

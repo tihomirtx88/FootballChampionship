@@ -3,7 +3,7 @@ import styled from "styled-components";
 const FootballFieldContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   gap: 10px;
   background-color: #4caf50; 
   padding: 20px;
