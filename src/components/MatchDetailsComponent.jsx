@@ -95,31 +95,81 @@ export default function MatchDetailsComponent() {
 
   // Define dynamic player positions mapping (example)
   const positionMapping = {
-    GK: { baseRow: 4, baseCol: 3 },
-    DF: { baseRow: 3, baseCol: 1 },
-    MF: { baseRow: 2, baseCol: 3 }, 
-    FW: { baseRow: 1, baseCol: 3 },
+    GK: { row: 4, col: 3 },
+    DF: { row: 3, col: 1 },
+    MF: { row: 2, col: 1 },
+    FW: { row: 1, col: 1 },
   };
 
   // Function to render players dynamically based on their position
-  const renderPlayers = (players, positionMapping) => {
-    return players.map((player, index) => {
+  const renderPlayers = (players) => {
+
+    // let def = 0;
+    // let mid = 0;
+    // let strik = 0;
+
+    let defArr = [];
+    let midArr = [];
+    let strArr = [];
+    const gridItems = [];
+
+
+    return players.forEach(()=>{
       const position = player.Position;
+      
+      if(position === "DF") {
+        // def += 1;
+        defArr.push(player);
+      }else if(position === "MF"){
+        // mid += 1;
+        midArr.push(player);
+      }else if(position === "FW"){
+        // strik += 1;
+        strArr.push(player);
+      };
+    });
+    
 
-      // Dynamic positioning within the same position type
-      const { baseRow, baseCol } = positionMapping[position] || { baseRow: 0, baseCol: 0 };
-      const rowOffset = 1; 
-      const colOffset = index % 3;
 
-      const row = baseRow - rowOffset;
-      const col = baseCol + colOffset;
+  
+      // // Get base row and column from the position mapping
+      // const { row, col } = positionMapping[position] || { row: 0, col: 0 };
 
-      return (
-        <PositionedPlayer className="postion-player" key={index} row={row} col={col} positionType={position}>
+
+      // const colOffset = position === "DF"
+      //    ? def
+      //    : position === "MF"
+      //      ? mid
+      //      : position === "FW"
+      //        ? strik
+      //        :  0;
+
+      // const gridRow = row;
+      // const gridCol = col + colOffset;
+      const defLength = defArr.length;
+      if (defLength === 1) {
+        gridItems.push( <PositionedPlayer
+          className="postion-player"
+          key={index}
+          row={3}
+          col={3}
+          positionType={position}
+        >
           <div className="player-circle" />
           {player.FullName}
           <span>({position})</span>
-        </PositionedPlayer>
+        </PositionedPlayer>);
+      }else if(defLength === 2){
+          gridItems[1]
+      }
+      defArr.forEach((player) => {
+         
+      });
+      
+  
+
+      return (
+         gridItems
       );
     });
   };

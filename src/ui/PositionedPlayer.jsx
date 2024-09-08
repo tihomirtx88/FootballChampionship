@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
 const PositionedPlayer = styled.div`
- display: flex;
+display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width: 120px;
-  height: 50px; */
   max-width: 80px;
-  border-radius: 50%;
-  background-color: #4caf50;
   color: white;
   text-align: center;
   grid-row: ${(props) => props.row};
@@ -17,14 +13,13 @@ const PositionedPlayer = styled.div`
   margin: 5px;
   position: relative;
 
-   // Circle for player position color
   .player-circle {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     position: absolute;
     left: 43%;
-    top: 70px;
+    top: 70%;
     background-color: ${(props) => {
       if (props.positionType === "GK") return "black";
       if (props.positionType === "DF") return "green";
@@ -34,7 +29,6 @@ const PositionedPlayer = styled.div`
     }};
   }
 
-  /* Styling for player info (name and position) */
   & > span {
     font-size: 0.8rem;
     margin-top: 5px;
