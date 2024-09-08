@@ -93,14 +93,6 @@ export default function MatchDetailsComponent() {
       });
   };
 
-  // Define dynamic player positions mapping (example)
-  // const positionMapping = {
-  //   GK: { row: 4, col: 3 },
-  //   DF: { row: 3, col: 1 },
-  //   MF: { row: 2, col: 1 },
-  //   FW: { row: 1, col: 1 },
-  // };
-
   // Function to render players dynamically based on their position
   const renderPlayers = (players) => {
     let GkArr = [];
@@ -109,8 +101,8 @@ export default function MatchDetailsComponent() {
     let strArr = [];
     const gridItems = [];
 
-    const totalColumns = 7;
-    const middleColumn = Math.floor(totalColumns / 2);
+    const totalColumns = 9;
+    const middleColumn = Math.ceil(totalColumns / 2);
 
     players.forEach((player) => {
       const position = player.Position;
@@ -127,8 +119,8 @@ export default function MatchDetailsComponent() {
         <PositionedPlayer
           key={player.ID}
           className="position-player"
-          row={4} // Goalkeeper row (4)
-          col={colOffset} // Center column
+          row={4}
+          col={colOffset}
           positionType={player.Position}
         >
           <div className="player-circle" />
@@ -138,61 +130,260 @@ export default function MatchDetailsComponent() {
       );
     });
 
-    // Handle Defenders (DF) placement
-    defArr.forEach((player, index) => {
-      const colOffset = middleColumn - Math.floor(defArr.length / 2) + index;
+    if (defArr.length === 2) {
+      defArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 4 : 6;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={3}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (defArr.length === 3) {
+      defArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 3 : index === 1 ? 5 : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={3}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (defArr.length === 4) {
+      defArr.forEach((player, index) => {
+        const colOffset =
+          index === 0 ? 2 : index === 1 ? 4 : index === 2 ? 6 : 8;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={3}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (defArr.length === 5) {
+      defArr.forEach((player, index) => {
+        const colOffset =
+          index === 0
+            ? 3
+            : index === 1
+            ? 4
+            : index === 2
+            ? 5
+            : index === 3
+            ? 6
+            : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={3}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    }
+
+    if (midArr.length === 2) {
+      midArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 4 : 6;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={2}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (midArr.length === 3) {
+      midArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 3 : index === 1 ? 5 : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={2}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (midArr.length === 4) {
+      midArr.forEach((player, index) => {
+        const colOffset =
+          index === 0 ? 2 : index === 1 ? 4 : index === 2 ? 6 : 8;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={2}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (midArr.length === 5) {
+      midArr.forEach((player, index) => {
+        const colOffset =
+          index === 0
+            ? 3
+            : index === 1
+            ? 4
+            : index === 2
+            ? 5
+            : index === 3
+            ? 6
+            : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={2}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    }
+
+    if (strArr.length === 2) {
+      strArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 4 : 6;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={1}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (strArr.length === 3) {
+      strArr.forEach((player, index) => {
+        const colOffset = index === 0 ? 3 : index === 1 ? 5 : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={1}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (strArr.length === 4) {
+      strArr.forEach((player, index) => {
+        const colOffset =
+          index === 0 ? 2 : index === 1 ? 4 : index === 2 ? 6 : 8;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={1}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else if (strArr.length === 5) {
+      strArr.forEach((player, index) => {
+        const colOffset =
+          index === 0
+            ? 3
+            : index === 1
+            ? 4
+            : index === 2
+            ? 5
+            : index === 3
+            ? 6
+            : 7;
+        gridItems.push(
+          <PositionedPlayer
+            key={player.ID}
+            className="position-player"
+            row={1}
+            col={colOffset}
+            positionType={player.Position}
+          >
+            <div className="player-circle" />
+            {/* {player.FullName} */}
+            <span>({player.Position})</span>
+          </PositionedPlayer>
+        );
+      });
+    } else {
+      const player = strArr[0];
       gridItems.push(
         <PositionedPlayer
-          key={player.ID}
+          key={player?.ID}
           className="position-player"
-          row={3} // Defenders row (3)
-          col={colOffset} // Calculate the column offset
-          positionType={player.Position}
+          row={1}
+          col={5}
+          positionType={player?.Position}
         >
           <div className="player-circle" />
-          {player.FullName}
-          <span>({player.Position})</span>
+          {/* {player.FullName} */}
+          <span>({player?.Position})</span>
         </PositionedPlayer>
       );
-    });
-
-    // Handle Midfielders (MF) placement
-  midArr.forEach((player, index) => {
-    const colOffset = middleColumn - Math.floor(midArr.length / 2) + index;
-    gridItems.push(
-      <PositionedPlayer
-        key={player.ID} 
-        className="position-player"
-        row={2}  // Midfielders row (2)
-        col={colOffset}  // Calculate the column offset
-        positionType={player.Position}
-      >
-        <div className="player-circle" />
-        {player.FullName}
-        <span>({player.Position})</span>
-      </PositionedPlayer>
-    );
-  });
-
-  // Handle Forwards/Strikers (FW) placement
-  strArr.forEach((player, index) => {
-    const colOffset = middleColumn - Math.floor(strArr.length / 2) + index;
-    gridItems.push(
-      <PositionedPlayer
-        key={player.ID} 
-        className="position-player"
-        row={1}  // Forwards row (1)
-        col={colOffset}  // Calculate the column offset
-        positionType={player.Position}
-      >
-        <div className="player-circle" />
-        {player.FullName}
-        <span>({player.Position})</span>
-      </PositionedPlayer>
-    );
-  });
-
-   
+    }
 
     return gridItems;
   };
@@ -226,6 +417,18 @@ export default function MatchDetailsComponent() {
             <div className="box right border"></div>
             <div className="box-d right border"></div>
             <div className="box right small border"></div>
+            <div className="spot left border"></div>
+            <div className="spot right border"></div>
+            <div className="spot center border"></div>
+            <div className="center-line border"></div>
+            <div className="center-circle border"></div>
+            <div className="center top left border"></div>
+            <div className="center top right border"></div>
+            <div className="corner top left border"></div>
+            <div className="corner top right border"></div>
+            <div className="corner bottom left border"></div>
+            <div className="corner bottom right border"></div>
+            <div className="grass"></div>
             {renderPlayers(playersA.slice(0, 11))}
           </FootballFieldContainer>
           <ReservesContainer>

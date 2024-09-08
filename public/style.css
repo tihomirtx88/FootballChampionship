@@ -1,0 +1,44 @@
+.border{
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+}
+
+.outline.border{
+  border: 4px solid white;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.center-line{
+    width: 100%;
+    height: 4px;
+    top: calc(50% - 4px/2);
+    left: 0;
+}
+
+.center-circle{
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    border: 4px solid white;
+    background: none;
+    top: calc(50% - 120px/2);
+    left: calc(50% - 120px/2);
+}
+
+.box{
+    top: 25%;
+    width: 16%;
+    height: 50%;
+    background: transparent;
+    border: 4px solid white;
+}
+
+/* .box.left{
+    top: 0;
+}
+.box.right{
+    bottom: 0;
+} */
