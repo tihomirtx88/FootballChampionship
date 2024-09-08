@@ -109,46 +109,26 @@ export default function MatchDetailsComponent() {
     let strArr = [];
     const gridItems = [];
 
+    const totalColumns = 7;
+    const middleColumn = Math.floor(totalColumns / 2);
+
     players.forEach((player) => {
       const position = player.Position;
-
-      if (position === "DF") {
-        // def += 1;
-        defArr.push(player);
-      } else if (position === "MF") {
-        // mid += 1;
-        midArr.push(player);
-      } else if (position === "FW") {
-        // strik += 1;
-        strArr.push(player);
-      } else if (position === "GK") {
-        GkArr.push(player);
-      }
+      if (position === "DF") defArr.push(player);
+      else if (position === "MF") midArr.push(player);
+      else if (position === "FW") strArr.push(player);
+      else if (position === "GK") GkArr.push(player);
     });
 
-    const GkArrLength = GkArr.length;
-    const defLength = defArr.length;
-    const midLength = midArr.length;
-    const strLength = strArr.length;
-
-
-    GkArr.forEach((player, index) => {
-      const totalColumns = 7;
-
-      const middleColumn = Math.floor(totalColumns / 2); 
-
-    
-      const colOffset =
-        GkArr.length > 1
-          ? middleColumn - Math.floor(GkArr.length / 2) + index
-          : middleColumn;
+    GkArr.forEach((player) => {
+      const colOffset = middleColumn;
 
       gridItems.push(
         <PositionedPlayer
-          key={index} 
-          className="postion-player"
-          row={4}
-          col={colOffset}
+          key={player.ID}
+          className="position-player"
+          row={4} // Goalkeeper row (4)
+          col={colOffset} // Center column
           positionType={player.Position}
         >
           <div className="player-circle" />
@@ -158,89 +138,61 @@ export default function MatchDetailsComponent() {
       );
     });
 
-    if (defLength === 5) {
-      defArr.forEach((player, index)=> {
-        const totalColumns = 7;
+    // Handle Defenders (DF) placement
+    defArr.forEach((player, index) => {
+      const colOffset = middleColumn - Math.floor(defArr.length / 2) + index;
+      gridItems.push(
+        <PositionedPlayer
+          key={player.ID}
+          className="position-player"
+          row={3} // Defenders row (3)
+          col={colOffset} // Calculate the column offset
+          positionType={player.Position}
+        >
+          <div className="player-circle" />
+          {player.FullName}
+          <span>({player.Position})</span>
+        </PositionedPlayer>
+      );
+    });
 
-          const middleColumn = Math.floor(totalColumns / 2); 
-    
-       
-          const colOffset =
-            defArr.length > 1
-              ? middleColumn - Math.floor(defArr.length / 2) + index
-              : middleColumn;
-    
-          gridItems.push(
-            <PositionedPlayer
-              className="postion-player"
-              row={3}
-              key={index} 
-              col={colOffset}
-              positionType={player.Position}
-            >
-              <div className="player-circle" />
-              {player.FullName}
-              <span>({player.Position})</span>
-            </PositionedPlayer>
-          );
-      });
-    }
+    // Handle Midfielders (MF) placement
+  midArr.forEach((player, index) => {
+    const colOffset = middleColumn - Math.floor(midArr.length / 2) + index;
+    gridItems.push(
+      <PositionedPlayer
+        key={player.ID} 
+        className="position-player"
+        row={2}  // Midfielders row (2)
+        col={colOffset}  // Calculate the column offset
+        positionType={player.Position}
+      >
+        <div className="player-circle" />
+        {player.FullName}
+        <span>({player.Position})</span>
+      </PositionedPlayer>
+    );
+  });
 
-    if (defLength === 4) {
-      defArr.forEach((player, index)=> {
-        const totalColumns = 10;
+  // Handle Forwards/Strikers (FW) placement
+  strArr.forEach((player, index) => {
+    const colOffset = middleColumn - Math.floor(strArr.length / 2) + index;
+    gridItems.push(
+      <PositionedPlayer
+        key={player.ID} 
+        className="position-player"
+        row={1}  // Forwards row (1)
+        col={colOffset}  // Calculate the column offset
+        positionType={player.Position}
+      >
+        <div className="player-circle" />
+        {player.FullName}
+        <span>({player.Position})</span>
+      </PositionedPlayer>
+    );
+  });
 
-          const middleColumn = Math.floor(totalColumns / 2); 
-    
-       
-          const colOffset =
-            defArr.length > 1
-              ? middleColumn - Math.floor(defArr.length / 2) + index
-              : middleColumn;
-    
-          gridItems.push(
-            <PositionedPlayer
-              className="postion-player"
-              row={3}
-              key={index} 
-              col={colOffset}
-              positionType={player.Position}
-            >
-              <div className="player-circle" />
-              {player.FullName}
-              <span>({player.Position})</span>
-            </PositionedPlayer>
-          );
-      });
-    }
-
-
-    // defArr.forEach((player, index) => {
-    //   const totalColumns = 7;
-
-    //   const middleColumn = Math.floor(totalColumns / 2); // This is the center
-
-    //   // If there are multiple GKs, position them evenly around the center
-    //   const colOffset =
-    //     GkArr.length > 1
-    //       ? middleColumn - Math.floor(defArr.length / 2) + index
-    //       : middleColumn;
-
-    //   gridItems.push(
-    //     <PositionedPlayer
-    //       className="postion-player"
-    //       row={3}
-    //       col={colOffset}
-    //       positionType={player.Position}
-    //     >
-    //       <div className="player-circle" />
-    //       {player.FullName}
-    //       <span>({player.Position})</span>
-    //     </PositionedPlayer>
-    //   );
-    // });
-
-
+   
 
     return gridItems;
   };

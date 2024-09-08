@@ -1,37 +1,37 @@
 import styled from "styled-components";
 
 const PositionedPlayer = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 80px;
+  width: 60px; /* Ensure width is controlled */
   color: white;
   text-align: center;
-  grid-row: ${(props) => props.row};
-  grid-column: ${(props) => props.col};
-  margin: 5px;
+  grid-row: ${(props) => props.row}; /* Dynamic row based on position */
+  grid-column: ${(props) => props.col}; /* Dynamic column */
   position: relative;
+  padding: 5px;
+  margin: auto;
 
+  /* Player Circle */
   .player-circle {
-    width: 20px;
-    height: 20px;
+    width: 40px; /* Increase the size of player circles */
+    height: 40px;
     border-radius: 50%;
-    position: absolute;
-    left: 43%;
-    top: 70%;
     background-color: ${(props) => {
       if (props.positionType === "GK") return "black";
       if (props.positionType === "DF") return "green";
       if (props.positionType === "MF") return "yellow";
-      if (props.positionType === "ST") return "red";
+      if (props.positionType === "FW") return "red";
       return "gray"; // Default color
     }};
+    margin-bottom: 10px;
   }
 
   & > span {
-    font-size: 0.8rem;
-    margin-top: 5px;
+    font-size: 1rem; /* Adjust font size for better readability */
+    margin-top: 10px;
   }
 `;
 
