@@ -220,6 +220,12 @@ export default function MatchDetailsComponent() {
         <TeamWrapper>
           <TeamName>{teamA.Name} Formation:</TeamName>
           <FootballFieldContainer className="foobal-field-container">
+            <div className="outline border"></div>
+            <div className="box left border"></div>
+            <div className="box-d left border"></div>
+            <div className="box right border"></div>
+            <div className="box-d right border"></div>
+            <div className="box right small border"></div>
             {renderPlayers(playersA.slice(0, 11))}
           </FootballFieldContainer>
           <ReservesContainer>

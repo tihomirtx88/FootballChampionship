@@ -2,19 +2,20 @@ import styled from "styled-components";
 
 const FootballFieldContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 1fr); /* 4 rows for different positions */
-  grid-template-columns: repeat(5, 1fr); /* 7 columns for players */
-  gap: 20px; /* Increased gap for better spacing */
+  grid-template-rows: repeat(4, 1fr); 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-auto-flow: column;
+  gap: 20px; 
   background-color: #4caf50; 
   padding: 20px;
   border-radius: 15px;
   width: 90%;
   max-width: 500px;
-  height: auto; /* Let height adjust based on the content */
-  aspect-ratio: 2 / 3; /* Maintain aspect ratio */
+  height: auto; 
+  aspect-ratio: 2 / 3; 
   position: relative;
   border: 3px solid white;
-  margin: auto; /* Center the field on the page */
+  margin: auto; 
 `;
 
 export default FootballFieldContainer;
