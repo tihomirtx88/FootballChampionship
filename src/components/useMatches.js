@@ -7,8 +7,6 @@ export function useMatches(){
         queryFn: apiMatches,
         retry: false,
     });
-
-    console.log(queryMatches, 'from use matvhes');
     
 
     return { queryMatches, error, isLoading };
