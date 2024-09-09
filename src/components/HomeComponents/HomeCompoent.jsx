@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-import Stage from "../ui/Stage ";
-import HomePagetitle from "../ui/HomePagetitle";
-import TournamentSchema from "../ui/TournamentSchema ";
-import StageTitle from "../ui/StageTitle ";
-import MatchesWrapper from "../ui/MatchesWrapper";
+import Stage from "../../ui/Stage ";
+import HomePagetitle from "../../ui/HomePagetitle";
+import TournamentSchema from "../../ui/TournamentSchema ";
+import StageTitle from "../../ui/StageTitle ";
+import MatchesWrapper from "../../ui/MatchesWrapper";
 
-import { useMatches } from "./useMatches";
-import { useTeams } from "./useTeams";
-import { filteredMatches, getWinner } from "../utils/filteredMatches";
+import { useMatches } from "../useMatches";
+import { useTeams } from "../useTeams";
+import { filteredMatches, getWinner } from "../../utils/filteredMatches";
 import MatchCardComponent from "./MatchCardComponent";
 import Filters from "./Filters";
 
