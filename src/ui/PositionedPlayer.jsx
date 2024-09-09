@@ -5,7 +5,7 @@ const PositionedPlayer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 30px; 
+  width: 60px; 
   color: white;
   text-align: center;
   grid-row: ${(props) => props.row}; 
