@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { parseCSV } from "../utils/csvParser";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import MatchContainer from "../ui/MatchContainer";
 import TeamsContainer from "../ui/TeamsContainer";
@@ -114,7 +115,7 @@ export default function MatchDetailsComponent() {
 
     GkArr.forEach((player) => {
       const colOffset = middleColumn;
-  
+
       gridItems.push(
         <PositionedPlayer
           key={player.ID}
@@ -142,7 +143,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-          
+
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -387,7 +388,6 @@ export default function MatchDetailsComponent() {
       );
     }
     console.log(gridItems);
-    
 
     return gridItems;
   };
@@ -405,7 +405,8 @@ export default function MatchDetailsComponent() {
     <MatchContainer>
       <Header>
         <MatchTitle>
-          {teamA.Name} vs {teamB.Name}
+          <Link to={`/team/${teamA.ID}`}>{teamA.Name}</Link> VS{" "}
+          <Link to={`/team/${teamB.ID}`}>{teamB.Name}</Link>
         </MatchTitle>
         <MatchScore>{match.Score}</MatchScore>
       </Header>
@@ -414,27 +415,30 @@ export default function MatchDetailsComponent() {
         {/* Team A Football Field */}
         <TeamWrapper>
           <TeamName>{teamA.Name} Formation:</TeamName>
-          <FootballFieldContainer className="foobal-field-container">
-            <div className="outline border"></div>
-            <div className="box left border"></div>
-            <div className="box-d left border"></div>
-            <div className="box right border"></div>
-            <div className="box-d right border"></div>
-            <div className="box right small border"></div>
-            <div className="spot left border"></div>
-            <div className="spot right border"></div>
-            <div className="spot center border"></div>
-            <div className="center-line border"></div>
-            <div className="center-circle border"></div>
-            <div className="center top left border"></div>
-            <div className="center top right border"></div>
-            <div className="corner top left border"></div>
-            <div className="corner top right border"></div>
-            <div className="corner bottom left border"></div>
-            <div className="corner bottom right border"></div>
-            <div className="grass"></div>
-            {renderPlayers(playersA.slice(0, 11))}
-          </FootballFieldContainer>
+          <Link to={`/team/${teamA.ID}`}>
+            <FootballFieldContainer className="foobal-field-container">
+              <div className="outline border"></div>
+              <div className="box left border"></div>
+              <div className="box-d left border"></div>
+              <div className="box right border"></div>
+              <div className="box-d right border"></div>
+              <div className="box right small border"></div>
+              <div className="spot left border"></div>
+              <div className="spot right border"></div>
+              <div className="spot center border"></div>
+              <div className="center-line border"></div>
+              <div className="center-circle border"></div>
+              <div className="center top left border"></div>
+              <div className="center top right border"></div>
+              <div className="corner top left border"></div>
+              <div className="corner top right border"></div>
+              <div className="corner bottom left border"></div>
+              <div className="corner bottom right border"></div>
+              <div className="grass"></div>
+              {renderPlayers(playersA.slice(0, 11))}
+            </FootballFieldContainer>
+          </Link>
+
           <ReservesContainer>
             <ReserveTitle>Reserves:</ReserveTitle>
             {renderReserves(playersA)}
@@ -443,27 +447,29 @@ export default function MatchDetailsComponent() {
 
         <TeamWrapper>
           <TeamName>{teamB.Name} Formation:</TeamName>
-          <FootballFieldContainer>
-          <div className="outline border"></div>
-            <div className="box left border"></div>
-            <div className="box-d left border"></div>
-            <div className="box right border"></div>
-            <div className="box-d right border"></div>
-            <div className="box right small border"></div>
-            <div className="spot left border"></div>
-            <div className="spot right border"></div>
-            <div className="spot center border"></div>
-            <div className="center-line border"></div>
-            <div className="center-circle border"></div>
-            <div className="center top left border"></div>
-            <div className="center top right border"></div>
-            <div className="corner top left border"></div>
-            <div className="corner top right border"></div>
-            <div className="corner bottom left border"></div>
-            <div className="corner bottom right border"></div>
-            <div className="grass"></div>
-            {renderPlayers(playersB.slice(0, 11))}
-          </FootballFieldContainer>
+          <Link to={`/team/${teamB.ID}`}>
+            <FootballFieldContainer>
+              <div className="outline border"></div>
+              <div className="box left border"></div>
+              <div className="box-d left border"></div>
+              <div className="box right border"></div>
+              <div className="box-d right border"></div>
+              <div className="box right small border"></div>
+              <div className="spot left border"></div>
+              <div className="spot right border"></div>
+              <div className="spot center border"></div>
+              <div className="center-line border"></div>
+              <div className="center-circle border"></div>
+              <div className="center top left border"></div>
+              <div className="center top right border"></div>
+              <div className="corner top left border"></div>
+              <div className="corner top right border"></div>
+              <div className="corner bottom left border"></div>
+              <div className="corner bottom right border"></div>
+              <div className="grass"></div>
+              {renderPlayers(playersB.slice(0, 11))}
+            </FootballFieldContainer>
+          </Link>
           <ReservesContainer>
             <ReserveTitle>Reserves:</ReserveTitle>
             {renderReserves(playersB)}
