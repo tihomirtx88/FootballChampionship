@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import MatchCard from "../ui/MatchCard";
-import TeamContainer from "../ui/TeamContainer";
-import MatchTitle from "../ui/Matchtitle";
+import MatchCard from "../../ui/MatchCard";
+import TeamContainer from "../../ui/TeamContainer";
+import MatchTitle from "../../ui/Matchtitle";
 
 const MatchInfo = styled.p`
   font-size: 1rem;

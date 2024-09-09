@@ -1,8 +1,8 @@
 import { parseCSV } from "../utils/csvParser";
 
-export async function apiTeams() {
+export async function apiPlayers() {
   try {
-    const response = await fetch("/data/teams.csv");
+    const response = await fetch("/data/players.csv");
 
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -10,9 +10,9 @@ export async function apiTeams() {
 
     const data = await response.text();
 
-    const parsedTeams = parseCSV(data);
+    const parsedPlayers = parseCSV(data);
     
-    return parsedTeams;
+    return parsedPlayers;
   } catch (error) {
     console.error("Failed to fetch and parse matches data:", error);
   }
