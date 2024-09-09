@@ -114,7 +114,7 @@ export default function MatchDetailsComponent() {
 
     GkArr.forEach((player) => {
       const colOffset = middleColumn;
-
+  
       gridItems.push(
         <PositionedPlayer
           key={player.ID}
@@ -124,7 +124,7 @@ export default function MatchDetailsComponent() {
           positionType={player.Position}
         >
           <div className="player-circle" />
-          {player.FullName}
+          {player?.FullName}
           <span>({player.Position})</span>
         </PositionedPlayer>
       );
@@ -142,7 +142,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+          
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -159,7 +159,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -177,7 +177,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -186,14 +186,16 @@ export default function MatchDetailsComponent() {
       defArr.forEach((player, index) => {
         const colOffset =
           index === 0
-            ? 3
+            ? 2
             : index === 1
-            ? 4
+            ? 3
             : index === 2
             ? 5
             : index === 3
-            ? 6
-            : 7;
+            ? 7
+            : index === 4
+            ? 8
+            : 9;
         gridItems.push(
           <PositionedPlayer
             key={player.ID}
@@ -203,7 +205,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -222,7 +224,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -239,7 +241,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -257,7 +259,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -283,7 +285,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -302,7 +304,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -319,7 +321,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -337,7 +339,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -363,7 +365,7 @@ export default function MatchDetailsComponent() {
             positionType={player.Position}
           >
             <div className="player-circle" />
-            {/* {player.FullName} */}
+            {player?.FullName}
             <span>({player.Position})</span>
           </PositionedPlayer>
         );
@@ -379,11 +381,13 @@ export default function MatchDetailsComponent() {
           positionType={player?.Position}
         >
           <div className="player-circle" />
-          {/* {player.FullName} */}
+          {player?.FullName}
           <span>({player?.Position})</span>
         </PositionedPlayer>
       );
     }
+    console.log(gridItems);
+    
 
     return gridItems;
   };
@@ -392,7 +396,7 @@ export default function MatchDetailsComponent() {
   const renderReserves = (players) => {
     return players.slice(11).map((player, index) => (
       <ReservePlayer key={index}>
-        {player.FullName} ({player.Position})
+        {player?.FullName} ({player.Position})
       </ReservePlayer>
     ));
   };
