@@ -173,7 +173,6 @@ export default function HomeCompoent() {
             winner = "Draw";
           }
         } else {
-          // eslint-disable-next-line no-unused-vars
           winner = "Draw";
         }
       }
