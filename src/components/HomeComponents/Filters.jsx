@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 
-import FilterContainer from "../ui/FilterContainer";
-import Dropdown from "../ui/Dropdown";
+import FilterContainer from "../../ui/FilterContainer";
+import Dropdown from "../../ui/Dropdown";
 
 const Input = styled.input`
   padding: 8px;

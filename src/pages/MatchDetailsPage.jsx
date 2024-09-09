@@ -1,7 +1,5 @@
-import MatchDetailsComponent from "../components/MatchDetailsComponent";
+import MatchDetailsComponent from "../components/MatchDetails/MatchDetailsComponent";
 
-export default function MatchDetailsPage(){
-    return(
-        <MatchDetailsComponent/>
-    );
-};
+export default function MatchDetailsPage() {
+  return <MatchDetailsComponent />;
+}

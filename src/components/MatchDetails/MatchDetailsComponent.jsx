@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import MatchContainer from "../ui/MatchContainer";
-import TeamsContainer from "../ui/TeamsContainer";
-import TeamWrapper from "../ui/TeamWrapper";
+import MatchContainer from "../../ui/MatchContainer";
+import TeamsContainer from "../../ui/TeamsContainer";
+import TeamWrapper from "../../ui/TeamWrapper";
 
-import { useMatches } from "./useMatches";
-import { useTeams } from "./useTeams";
-import { usePlayers } from "./usePlayers";
+import { useMatches } from "../useMatches";
+import { useTeams } from "../useTeams";
+import { usePlayers } from "../usePlayers";
 
-import MatchHeader from "./MatchDetails/MatchHeader";
-import FootballField from "./MatchDetails/FootballField";
-import Reserves from "./MatchDetails/Reserves";
-
+import MatchHeader from "./MatchHeader";
+import FootballField from "./FootballField";
+import Reserves from "./Reserves";
 
 export default function MatchDetailsComponent() {
   const { id } = useParams();
@@ -22,8 +21,8 @@ export default function MatchDetailsComponent() {
   const [playersA, setPlayersA] = useState([]);
   const [playersB, setPlayersB] = useState([]);
 
-  const { queryMatches} = useMatches();
-  const { queryTeams} = useTeams();
+  const { queryMatches } = useMatches();
+  const { queryTeams } = useTeams();
   const { queryPlayers } = usePlayers();
 
   useEffect(() => {
@@ -44,8 +43,12 @@ export default function MatchDetailsComponent() {
       setTeamA(teamAData);
       setTeamB(teamBData);
 
-      const filteredPlayersA = queryPlayers.filter((p) => p.TeamID === match.ATeamID);
-      const filteredPlayersB = queryPlayers.filter((p) => p.TeamID === match.BTeamID);
+      const filteredPlayersA = queryPlayers.filter(
+        (p) => p.TeamID === match.ATeamID
+      );
+      const filteredPlayersB = queryPlayers.filter(
+        (p) => p.TeamID === match.BTeamID
+      );
 
       setPlayersA(filteredPlayersA);
       setPlayersB(filteredPlayersB);
@@ -54,19 +57,21 @@ export default function MatchDetailsComponent() {
 
   return match && teamA && teamB ? (
     <MatchContainer>
-
       <MatchHeader match={match} teamA={teamA} teamB={teamB}></MatchHeader>
 
       <TeamsContainer>
         {/* Team A Football Field */}
         <TeamWrapper>
-          <FootballField teamName={teamA.Name} players={playersA}></FootballField>
+          <FootballField
+            teamName={teamA.Name}
+            players={playersA}
+          ></FootballField>
           <Reserves players={playersA}></Reserves>
         </TeamWrapper>
 
         <TeamWrapper>
-           <FootballField teamName={teamB.Name} players={playersB} />
-           <Reserves players={playersB} />
+          <FootballField teamName={teamB.Name} players={playersB} />
+          <Reserves players={playersB} />
         </TeamWrapper>
       </TeamsContainer>
     </MatchContainer>
