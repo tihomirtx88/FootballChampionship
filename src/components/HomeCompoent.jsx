@@ -8,6 +8,7 @@ import HomePagetitle from "../ui/HomePagetitle";
 import TournamentSchema from "../ui/TournamentSchema ";
 import StageTitle from "../ui/StageTitle ";
 import MatchesWrapper from "../ui/MatchesWrapper";
+import { useMatches } from "./useMatches";
 
 const MatchCard = styled.div`
   background-color: #ffffff;
@@ -83,18 +84,14 @@ const Dropdown = styled.select`
 `;
 
 export default function HomeCompoent() {
-  const [matches, setMatches] = useState([]);
   const [teams, setTeams] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [stageFilter, setStageFilter] = useState("Group Stage");
 
+  const {  queryMatches } = useMatches();
+
   useEffect(() => {
-    fetch("/data/matches.csv")
-      .then((res) => res.text())
-      .then((data) => {
-        const parsedMatches = parseCSV(data);
-        setMatches(parsedMatches);
-      });
+
 
     fetch("/data/teams.csv")
       .then((res) => res.text())
@@ -113,14 +110,14 @@ export default function HomeCompoent() {
   }, []);
 
   // Divide matches by stages
-  const groupstate = matches.filter((match) => match.ID >= 1 && match.ID <= 37);
-  const roundOf16 = matches.filter((match) => match.ID >= 38 && match.ID <= 44);
-  const quarterFinals = matches.filter(
+  const groupstate = queryMatches.filter((match) => match.ID >= 1 && match.ID <= 37);
+  const roundOf16 = queryMatches.filter((match) => match.ID >= 38 && match.ID <= 44);
+  const quarterFinals = queryMatches.filter(
     (match) => match.ID >= 45 && match.ID <= 48
   );
-  const semifinal = matches.filter((match) => match.ID >= 49 && match.ID < 51);
+  const semifinal = queryMatches.filter((match) => match.ID >= 49 && match.ID < 51);
 
-  const final = matches.filter((match) => match.ID >= 51);
+  const final = queryMatches.filter((match) => match.ID >= 51);
 
   // Filter matches based on search and stage filter
   const filteredMatches = (matchesToFilter, stageName) => {

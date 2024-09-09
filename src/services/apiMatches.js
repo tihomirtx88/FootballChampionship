@@ -11,7 +11,7 @@ export async function apiMatches() {
     const data = await response.text();
 
     const parsedMatches = parseCSV(data);
-
+    
     return parsedMatches;
   } catch (error) {
     console.error("Failed to fetch and parse matches data:", error);

@@ -2,11 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { apiMatches } from "../services/apiMatches";
 
 export function useMatches(){
-    const { data: matches, error} = useQuery({
+    const { data:  queryMatches = [] , error, isLoading} = useQuery({
         queryKey: ["matches"],
-        queryFn: () => apiMatches(),
+        queryFn: apiMatches,
         retry: false,
     });
 
-    return { error, matches };
+    console.log(queryMatches, 'from use matvhes');
+    
+
+    return { queryMatches, error, isLoading };
 };
