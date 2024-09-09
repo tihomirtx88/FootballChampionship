@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+
 import { useParams } from "react-router";
-import { parseCSV } from "../utils/csvParser";
+// import { useRecords } from "./useRecords";
 import styled from "styled-components";
+import { useTeams } from "./useTeams";
+import { usePlayers } from "./usePlayers";
 
 const TeamDetailsContainer = styled.div`
   padding: 20px;
@@ -63,41 +65,23 @@ const PlayerNumber = styled.span`
 
 export default function TeamDetailsComponent() {
   const { id } = useParams();
-  const [team, setTeam] = useState(null);
-  const [players, setPlayers] = useState({
-    goalkeepers: [],
-    defenders: [],
-    midfielders: [],
-    forwards: [],
-  });
 
-  useEffect(() => {
-    fetch("/data/teams.csv")
-      .then((res) => res.text())
-      .then((data) => {
-        const teams = parseCSV(data);
-        const foundTeam = teams.find((t) => t.ID === id);
+  const { queryTeams, error: teamError, isLoading: teamLoading } = useTeams();
+  const { queryPlayers, error: playerError, isLoading: playerLoading } = usePlayers();
+  // const { queryRecords, error: recordsError, isLoading: recordsLoading } = useRecords();
 
-        setTeam(foundTeam);
-        loadPlayers(foundTeam.ID);
-      });
-  }, [id]);
+  if (teamLoading || playerLoading) return <p>Loading team details...</p>;
+  if (teamError || playerError) return <p>Error loading data.</p>;
 
-  const loadPlayers = (teamId) => {
-    fetch("/data/players.csv")
-      .then((res) => res.text())
-      .then((data) => {
-        const players = parseCSV(data);
+  const team = queryTeams.find((t) => t.ID === id);
 
-        const groupedPlayers = {
-          goalkeepers: players.filter((p) => p.TeamID === teamId && p.Position === "GK"),
-          defenders: players.filter((p) => p.TeamID === teamId && p.Position === "DF"),
-          midfielders: players.filter((p) => p.TeamID === teamId && p.Position === "MF"),
-          forwards: players.filter((p) => p.TeamID === teamId && p.Position === "FW"),
-        };
+  if (!team) return <p>Team not found.</p>;
 
-        setPlayers(groupedPlayers);
-      });
+  const players = {
+    goalkeepers: queryPlayers.filter((p) => p.TeamID === id && p.Position === "GK"),
+    defenders: queryPlayers.filter((p) => p.TeamID === id && p.Position === "DF"),
+    midfielders: queryPlayers.filter((p) => p.TeamID === id && p.Position === "MF"),
+    forwards: queryPlayers.filter((p) => p.TeamID === id && p.Position === "FW"),
   };
 
   return team ? (

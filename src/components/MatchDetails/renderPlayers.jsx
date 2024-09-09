@@ -18,6 +18,8 @@ export const renderPlayers = (players) => {
     3: [3, 5, 7],
     4: [2, 4, 6, 8],
     5: [2, 3, 5, 7, 8],
+    6: [2, 3, 4, 6, 7, 8],
+    7: [1, 3, 4, 5, 6, 7, 8,]
   };
   const gridItems = [];
 
