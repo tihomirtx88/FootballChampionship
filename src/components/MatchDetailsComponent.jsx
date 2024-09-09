@@ -440,6 +440,24 @@ export default function MatchDetailsComponent() {
         <TeamWrapper>
           <TeamName>{teamB.Name} Formation:</TeamName>
           <FootballFieldContainer>
+          <div className="outline border"></div>
+            <div className="box left border"></div>
+            <div className="box-d left border"></div>
+            <div className="box right border"></div>
+            <div className="box-d right border"></div>
+            <div className="box right small border"></div>
+            <div className="spot left border"></div>
+            <div className="spot right border"></div>
+            <div className="spot center border"></div>
+            <div className="center-line border"></div>
+            <div className="center-circle border"></div>
+            <div className="center top left border"></div>
+            <div className="center top right border"></div>
+            <div className="corner top left border"></div>
+            <div className="corner top right border"></div>
+            <div className="corner bottom left border"></div>
+            <div className="corner bottom right border"></div>
+            <div className="grass"></div>
             {renderPlayers(playersB.slice(0, 11))}
           </FootballFieldContainer>
           <ReservesContainer>
