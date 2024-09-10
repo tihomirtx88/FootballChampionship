@@ -1,9 +1,9 @@
-
 import { useParams } from "react-router";
-// import { useRecords } from "./useRecords";
+import { useRecords } from "./useRecords";
 import styled from "styled-components";
 import { useTeams } from "./useTeams";
 import { usePlayers } from "./usePlayers";
+import { useMatches } from "./useMatches";
 
 const TeamDetailsContainer = styled.div`
   padding: 20px;
@@ -63,25 +63,99 @@ const PlayerNumber = styled.span`
   border-radius: 50%;
 `;
 
+const PlayerRecordsList = styled.div`
+  margin-top: 10px;
+`;
+
+const PlayerRecord = styled.div`
+  font-size: 0.9rem;
+  color: #00796b;
+`;
+
 export default function TeamDetailsComponent() {
   const { id } = useParams();
 
   const { queryTeams, error: teamError, isLoading: teamLoading } = useTeams();
-  const { queryPlayers, error: playerError, isLoading: playerLoading } = usePlayers();
-  // const { queryRecords, error: recordsError, isLoading: recordsLoading } = useRecords();
+  const {
+    queryPlayers,
+    error: playerError,
+    isLoading: playerLoading,
+  } = usePlayers();
+  const {
+    queryMatches,
+    error: matchError,
+    isLoading: matchLoading,
+  } = useMatches();
+  const {
+    queryRecords,
+    error: recordsError,
+    isLoading: recordsLoading,
+  } = useRecords();
 
-  if (teamLoading || playerLoading) return <p>Loading team details...</p>;
-  if (teamError || playerError) return <p>Error loading data.</p>;
+  if (teamLoading || playerLoading || matchLoading || recordsLoading)
+    return <p>Loading team details...</p>;
+  if (teamError || playerError || matchError || recordsError)
+    return <p>Error loading data.</p>;
 
   const team = queryTeams.find((t) => t.ID === id);
 
   if (!team) return <p>Team not found.</p>;
 
   const players = {
-    goalkeepers: queryPlayers.filter((p) => p.TeamID === id && p.Position === "GK"),
-    defenders: queryPlayers.filter((p) => p.TeamID === id && p.Position === "DF"),
-    midfielders: queryPlayers.filter((p) => p.TeamID === id && p.Position === "MF"),
-    forwards: queryPlayers.filter((p) => p.TeamID === id && p.Position === "FW"),
+    goalkeepers: queryPlayers.filter(
+      (p) => p.TeamID === id && p.Position === "GK"
+    ),
+    defenders: queryPlayers.filter(
+      (p) => p.TeamID === id && p.Position === "DF"
+    ),
+    midfielders: queryPlayers.filter(
+      (p) => p.TeamID === id && p.Position === "MF"
+    ),
+    forwards: queryPlayers.filter(
+      (p) => p.TeamID === id && p.Position === "FW"
+    ),
+  };
+
+  // Map records
+  const playerRecords = queryRecords.reduce((acc, record) => {
+    const { PlayerID, fromMinutes, toMinutes, MatchID } = record;
+    if (!acc[PlayerID]) {
+      acc[PlayerID] = [];
+    }
+
+    acc[PlayerID].push({ fromMinutes, toMinutes, MatchID });
+    return acc;
+  }, []);
+
+  // Map matches
+// Map matches
+const matchMap = queryMatches.reduce((acc, match) => {
+  acc[match.ID] = {
+    date: match?.Date,
+    score: match?.Score,
+    opponent: match.ATeamID === id ? `Team ${match.BTeamID}` : `Team ${match.ATeamID}`,
+  };
+  return acc;
+}, {});
+
+  // Render player records
+  const renderPlayerRecords = (playerID) => {
+    const records = playerRecords[playerID] || [];
+    return (
+      <PlayerRecordsList>
+        {records.map((record, index) => {
+          const match = matchMap[record.MatchID];
+          if (!match) {
+            return <PlayerRecord key={index}>Match data not available</PlayerRecord>;
+          }
+          return (
+            <PlayerRecord key={index}>
+              {`Match Date: ${match.date || "N/A"} | Opponent: ${match.opponent || "N/A"} | Played from ${record.fromMinutes || 0} to ${record.toMinutes || "end"}`}
+            </PlayerRecord>
+          );
+        })}
+      </PlayerRecordsList>
+    );
   };
 
   return team ? (
@@ -89,59 +163,23 @@ export default function TeamDetailsComponent() {
       <h2>{team.Name}</h2>
       <h3>Manager: {team.ManagerFullName}</h3>
       <RosterContainer>
-
-        <PositionGroup>
-          <PositionTitle>Goalkeepers</PositionTitle>
-          <PlayerGrid>
-             {players.goalkeepers.map((player) => (
+        {Object.keys(players).map((position) => (
+          <PositionGroup key={position}>
+            <PositionTitle>
+              {position.charAt(0).toUpperCase() + position.slice(1)}
+            </PositionTitle>
+            <PlayerGrid>
+              {players[position].map((player) => (
                 <PlayerCard key={player.ID}>
                   <PlayerName>{player.FullName}</PlayerName>
                   <PlayerPosition>{player.Position}</PlayerPosition>
                   <PlayerNumber>{player.TeamNumber}</PlayerNumber>
+                  {renderPlayerRecords(player.ID)}
                 </PlayerCard>
-             ))}
-          </PlayerGrid>
-        </PositionGroup>
-
-        <PositionGroup>
-          <PositionTitle>Defenders</PositionTitle>
-          <PlayerGrid>
-             {players.defenders.map((player) => (
-                <PlayerCard key={player.ID}>
-                  <PlayerName>{player.FullName}</PlayerName>
-                  <PlayerPosition>{player.Position}</PlayerPosition>
-                  <PlayerNumber>{player.TeamNumber}</PlayerNumber>
-                </PlayerCard>
-             ))}
-          </PlayerGrid>
-        </PositionGroup>
-
-        <PositionGroup>
-          <PositionTitle>Midfielders</PositionTitle>
-          <PlayerGrid>
-             {players.midfielders.map((player) => (
-                <PlayerCard key={player.ID}>
-                  <PlayerName>{player.FullName}</PlayerName>
-                  <PlayerPosition>{player.Position}</PlayerPosition>
-                  <PlayerNumber>{player.TeamNumber}</PlayerNumber>
-                </PlayerCard>
-             ))}
-          </PlayerGrid>
-        </PositionGroup>
-
-        <PositionGroup>
-          <PositionTitle>Forwards</PositionTitle>
-          <PlayerGrid>
-             {players.forwards.map((player) => (
-                <PlayerCard key={player.ID}>
-                  <PlayerName>{player.FullName}</PlayerName>
-                  <PlayerPosition>{player.Position}</PlayerPosition>
-                  <PlayerNumber>{player.TeamNumber}</PlayerNumber>
-                </PlayerCard>
-             ))}
-          </PlayerGrid>
-        </PositionGroup>
-       
+              ))}
+            </PlayerGrid>
+          </PositionGroup>
+        ))}
       </RosterContainer>
     </TeamDetailsContainer>
   ) : (
