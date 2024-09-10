@@ -127,7 +127,7 @@ export default function TeamDetailsComponent() {
     return acc;
   }, []);
 
-  // Map matches
+
 // Map matches
 const matchMap = queryMatches.reduce((acc, match) => {
   acc[match.ID] = {
