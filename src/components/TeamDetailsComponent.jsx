@@ -9,6 +9,8 @@ import PlayerGrid from "./../ui/PlayerGrid";
 import PlayerCard from "./../ui/PlayerCard";
 import PlayerNumber from "./../ui/PlayerNumber";
 import ErrorComponent from "../pages/ErrorComponent";
+import TeamName from "../ui/TeamName";
+import ManagerName from "../ui/ManagerName";
 
 const TeamDetailsContainer = styled.div`
   padding: 20px;
@@ -49,6 +51,7 @@ const PlayerRecord = styled.div`
   font-size: 0.9rem;
   color: #00796b;
 `;
+
 
 export default function TeamDetailsComponent() {
   const { id } = useParams();
@@ -156,8 +159,8 @@ export default function TeamDetailsComponent() {
 
   return team ? (
     <TeamDetailsContainer>
-      <h2>{team.Name}</h2>
-      <h3>Manager: {team.ManagerFullName}</h3>
+      <TeamName>{team.Name}</TeamName>
+      <ManagerName>Manager: {team.ManagerFullName}</ManagerName>
       <RosterContainer>
         {Object.keys(players).map((position) => (
           <PositionGroup key={position}>
