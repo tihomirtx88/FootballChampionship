@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import FootballFieldContainer from "../../ui/FootballFieldContainer";
-import { renderPlayers } from "./renderPlayers";
+import {  useRenderPlayers } from "./useRenderPlayers";
 
 export default function FootballField({ teamName, players }){
     return(
@@ -25,7 +25,7 @@ export default function FootballField({ teamName, players }){
               <div className="corner bottom left border"></div>
               <div className="corner bottom right border"></div>
               <div className="grass"></div>
-          {renderPlayers(players.slice(0, 11))}
+          {useRenderPlayers(players.slice(0, 11))}
         </FootballFieldContainer>
       </>
     );

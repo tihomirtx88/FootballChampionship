@@ -56,12 +56,12 @@ export default function MatchDetailsComponent() {
   };
 
   return match && teamA && teamB ? (
-    <MatchContainer>
+    <MatchContainer className="match-container">
       <MatchHeader match={match} teamA={teamA} teamB={teamB}></MatchHeader>
 
-      <TeamsContainer>
+      <TeamsContainer className="team-container">
         {/* Team A Football Field */}
-        <TeamWrapper>
+        <TeamWrapper className="team-wrapper">
           <FootballField
             teamName={teamA.Name}
             players={playersA}
