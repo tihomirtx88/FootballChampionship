@@ -1,0 +1,28 @@
+export const teamLogos = {
+    Spain: "https://toppng.com/uploads/preview/flag-of-spain-vector-logo-11574321406zmw8ldqefy.png",
+    France: "https://toppng.com/uploads/preview/hd-france-waving-hanging-flag-11641855602kqf2rxfnsx.png",
+    Germany: "https://toppng.com/uploads/preview/ermany-europe-news-germany-germany-travel-flag-german-flag-in-germany-11563265863hz9iqhhufj.png",
+    Italy: "https://toppng.com/uploads/preview/italian-flag-italy-flag-circle-11563026285t4e2pcuqfy.png",
+    Scotland: "https://toppng.com/uploads/preview/scotland-wrinkled-flag-11547884230niobzgvnlw.png",
+    Hungary: "https://toppng.com/uploads/preview/hungary-large-flag-11547885067vf9ll5qd2i.png",
+    Switzerland: "https://toppng.com/uploads/preview/switzerland-large-flag-11547884705by4cwu9vge.png",
+    Croatia: "https://toppng.com/uploads/preview/croatia-large-flag-11547885803ukx8piaceh.png",
+    Albania: "https://toppng.com/uploads/preview/albania-large-flag-11547885905qxuevve0sx.png",
+    Poland: "https://toppng.com/uploads/preview/wrinkled-gallery-yopriceville-high-poland-national-flag-11563350593d7fedspyoo.png",
+    Netherlands: "https://toppng.com/uploads/preview/netherlands-flag-11550718342ztiyyen78y.png",
+    Serbia: "https://toppng.com/uploads/preview/serbia-large-flag-11547884597zy9yattqbm.png",
+    England: "https://toppng.com/uploads/preview/uk-round-flag-11563596900h0bvrmnyb2.png",
+    Slovenia: "https://toppng.com/uploads/preview/slovenia-large-flag-11547885744icecu7egnk.png",
+    Denmark: "https://toppng.com/uploads/preview/denmark-large-flag-11547884050zesx1byynw.png",
+    Romania: "https://toppng.com/uploads/preview/romania-large-flag-11547885004lx82ssd2xp.png",
+    Ukraine: "https://toppng.com/uploads/preview/ukraine-large-flag-11547886040xevtjjr9bj.png",
+    Austria: "https://toppng.com/uploads/preview/austria-large-flag-11547884752lo02gonhqc.png",
+    Belgium: "https://toppng.com/uploads/preview/belgium-large-flag-11547883928p9gb5nqhld.png",
+    Slovakia: "https://toppng.com/uploads/preview/slovakia-large-flag-11547885686vct775iwhr.png",
+    Turkey: "https://toppng.com/uploads/preview/turkey-large-flag-11547887030mdpdyrwr9f.png",
+    Georgia: "https://toppng.com/uploads/preview/georgia-large-flag-11547890953sxexikgn1o.png",
+    Portugal: "https://toppng.com/uploads/preview/portugal-large-flag-11547884657omolt2mqwp.png",
+    'Czech Republic': "https://toppng.com/uploads/preview/czech-republic-large-flag-11547884411aqvn6bwahx.png",
+    
+
+  };

@@ -8,7 +8,10 @@ import MatchesWrapper from "../../ui/MatchesWrapper";
 
 import { useMatches } from "../useMatches";
 import { useTeams } from "../useTeams";
+
 import { filteredMatches, getWinner } from "../../utils/filteredMatches";
+import { teamLogos } from "../../utils/teamLogos";
+
 import MatchCardComponent from "./MatchCardComponent";
 import Filters from "./Filters";
 
@@ -35,7 +38,7 @@ export default function HomeCompoent() {
   const teams = queryTeams.reduce((acc, team) => {
     acc[team.ID] = {
       name: team.Name,
-      logo: "https://toppng.com/uploads/preview/flag-of-spain-vector-logo-11574321406zmw8ldqefy.png",
+      logo: teamLogos[team.Name] || "https://toppng.com/uploads/preview/default-logo.png"
     };
     return acc;
   }, {});
