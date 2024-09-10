@@ -9,6 +9,17 @@ const Input = styled.input`
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 7px;
+    font-size: 0.9rem;
+  }
+
+
+  @media (max-width: 480px) {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
 `;
 
 export default function Filters({searchQuery, setSearchQuery, stageFilter, setStageFilter }){

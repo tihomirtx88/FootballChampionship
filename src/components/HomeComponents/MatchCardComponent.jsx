@@ -8,12 +8,29 @@ import MatchTitle from "../../ui/Matchtitle";
 const MatchInfo = styled.p`
   font-size: 1rem;
   color: #777;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Score = styled.p`
   font-size: 1.4rem;
   font-weight: bold;
   color: #4caf50;
+
+   
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const TeamLogo = styled.img`
@@ -22,6 +39,16 @@ const TeamLogo = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin: 0 10px;
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 

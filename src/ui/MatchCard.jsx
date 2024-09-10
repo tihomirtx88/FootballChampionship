@@ -13,6 +13,16 @@ const MatchCard = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    width: 200px;
+    padding: 10px;
+  }
 `;
 
 export default MatchCard;
