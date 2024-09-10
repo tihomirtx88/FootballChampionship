@@ -8,6 +8,7 @@ import { useMatches } from "./useMatches";
 import PlayerGrid from "./../ui/PlayerGrid";
 import PlayerCard from "./../ui/PlayerCard";
 import PlayerNumber from "./../ui/PlayerNumber";
+import ErrorComponent from "../pages/ErrorComponent";
 
 const TeamDetailsContainer = styled.div`
   padding: 20px;
@@ -71,8 +72,18 @@ export default function TeamDetailsComponent() {
 
   if (teamLoading || playerLoading || matchLoading || recordsLoading)
     return <p>Loading team details...</p>;
-  if (teamError || playerError || matchError || recordsError)
-    return <p>Error loading data.</p>;
+
+
+  if (teamError || playerError || matchError || recordsError) {
+    return <ErrorComponent 
+      errorType={
+        teamError ? 'teamError' : 
+        playerError ? 'playerError' : 
+        matchError ? 'matchError' : 
+        'recordsError'
+      } 
+    />;
+  }
 
   const team = queryTeams.find((t) => t.ID === id);
 
