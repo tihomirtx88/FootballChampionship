@@ -9,10 +9,10 @@ export const useRenderPlayers = (players) => {
 
   const gridItems = [
     // GK
-    generatePlayers(playerGroups.GK, 7, columnLayouts, middleColumn),
-    generateDefenders(playerGroups.DF, isMobile, columnLayouts, middleColumn),
-    generateMidfielders(playerGroups.MF, isMobile, columnLayouts, middleColumn),
-    generateStrikers(playerGroups.FW, isMobile, columnLayouts, middleColumn),
+    ...generatePlayers(playerGroups.GK, 7, columnLayouts, middleColumn),
+    ...generateDefenders(playerGroups.DF, isMobile, columnLayouts, middleColumn),
+    ...generateMidfielders(playerGroups.MF, isMobile, columnLayouts, middleColumn),
+    ...generateStrikers(playerGroups.FW, isMobile, columnLayouts, middleColumn),
   ];
 
   return gridItems;
