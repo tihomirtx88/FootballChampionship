@@ -15,9 +15,11 @@ import Reserves from "./Reserves";
 
 export default function MatchDetailsComponent() {
   const { id } = useParams();
+
   const [match, setMatch] = useState(null);
   const [teamA, setTeamA] = useState(null);
   const [teamB, setTeamB] = useState(null);
+
   const [playersA, setPlayersA] = useState([]);
   const [playersB, setPlayersB] = useState([]);
 
@@ -27,7 +29,9 @@ export default function MatchDetailsComponent() {
 
   useEffect(() => {
     if (queryMatches.length > 0 && id) {
+
       const foundMatch = queryMatches.find((m) => m.ID === id);
+
       if (foundMatch) {
         setMatch(foundMatch);
         loadTeamsAndPlayers(foundMatch);
@@ -37,7 +41,9 @@ export default function MatchDetailsComponent() {
 
   const loadTeamsAndPlayers = (match) => {
     if (queryTeams.length > 0 && queryPlayers.length > 0) {
+      // Home team
       const teamAData = queryTeams.find((t) => t.ID === match.ATeamID);
+      // Quest team
       const teamBData = queryTeams.find((t) => t.ID === match.BTeamID);
 
       setTeamA(teamAData);
