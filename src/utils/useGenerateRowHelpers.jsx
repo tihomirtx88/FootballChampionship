@@ -1,9 +1,21 @@
-import PlayerGrid from "../components/MatchDetails/PlayerGrid";
+import PositionedPlayer from "../ui/PositionedPlayer";
 
 export const generatePlayers = (players, row, columnLayouts, middleColumn) => {
-    const layout = columnLayouts[players.length] || [];
 
-    return <PlayerGrid players={players} row={row} layout={layout} middleColumn={middleColumn}></PlayerGrid>
+    return players.map((player, index) => (
+      <PositionedPlayer
+        key={player.ID} 
+        className="position-player"
+        row={row}
+        col={columnLayouts[players.length][index] || middleColumn}
+        positionType={player.Position}
+      >
+        <div className="player-circle" />
+        {player.FullName}
+        <span>({player.Position})</span>
+      </PositionedPlayer>
+    ));
+    
 };
 
 export const generateDefenders = (defenders, isMobile, columnLayouts, middleColumn) => {

@@ -51,7 +51,6 @@ const TeamLogo = styled.img`
   }
 `;
 
-
 export default function MatchCardComponent({ match, teams, getWinner }) {
 
   const scorePattern = /(\d+)(?:\((\d+)\))?-(\d+)(?:\((\d+)\))?/;
